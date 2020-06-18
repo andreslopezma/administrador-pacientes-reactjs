@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid'
+import PropTypes from 'prop-types';
 
 const Formulario = ({crearCitas}) => {
 
@@ -31,8 +32,6 @@ const Formulario = ({crearCitas}) => {
     // cada que el usuario envia el formulario
     const submitCita = e => {
         e.preventDefault();
-
-        console.log('enviado Formulario')
         // validacion
         if ( mascota === '' || dueño === '' || fecha === '' || hora === '' || sintomas === '' ){
             modificarError(true);
@@ -117,6 +116,10 @@ const Formulario = ({crearCitas}) => {
             </form>
         </Fragment>
      );
+}
+
+Formulario.propTypes = {
+    crearCitas: PropTypes.func.isRequired
 }
  
 export default Formulario;
