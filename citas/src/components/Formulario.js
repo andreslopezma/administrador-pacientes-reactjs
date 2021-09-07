@@ -2,11 +2,11 @@ import React, { Fragment, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid'
 import PropTypes from 'prop-types';
 
-const Formulario = ({crearCitas}) => {
+const Formulario = ({ crearCitas }) => {
 
     // Crear state de citas
     // el primer parametro el que contiene el valor y el segundo es la funcion que va a modificar ese valor (state)
-    const [ cita, actualizarCita ] = new useState( {
+    const [cita, actualizarCita] = new useState({
         mascota: '',
         dueño: '',
         fecha: '',
@@ -15,7 +15,7 @@ const Formulario = ({crearCitas}) => {
     });
 
     // sirve para validar error dentro del formulario
-    const [ error, modificarError ] = useState(false);
+    const [error, modificarError] = useState(false);
 
     // funcion que se ejecuta cada que el usuario escribe en un input
     const actualizarState = e => {
@@ -33,7 +33,7 @@ const Formulario = ({crearCitas}) => {
     const submitCita = e => {
         e.preventDefault();
         // validacion
-        if ( mascota === '' || dueño === '' || fecha === '' || hora === '' || sintomas === '' ){
+        if (mascota === '' || dueño === '' || fecha === '' || hora === '' || sintomas === '') {
             modificarError(true);
             return
         }
@@ -56,17 +56,17 @@ const Formulario = ({crearCitas}) => {
 
 
     }
-    return ( 
+    return (
         <Fragment>
             <h1> Crear Citas </h1>
             {
-                error ? <p className="alerta-error"> Todos los campos son obligatorios </p>  : null
+                error ? <p className="alerta-error"> Todos los campos son obligatorios </p> : null
             }
-            <form 
+            <form
                 onSubmit={submitCita}
             >
                 <label> Nombre Mascota </label>
-                <input 
+                <input
                     type="text"
                     name="mascota"
                     placeholder="Nombre Mascota"
@@ -75,7 +75,7 @@ const Formulario = ({crearCitas}) => {
                     value={mascota}
                 />
                 <label> Nombre Dueño </label>
-                <input 
+                <input
                     type="text"
                     name="dueño"
                     placeholder="Nombre del dueño"
@@ -84,7 +84,7 @@ const Formulario = ({crearCitas}) => {
                     value={dueño}
                 />
                 <label> Fecha </label>
-                <input 
+                <input
                     type="date"
                     name="fecha"
                     className="u-full-width"
@@ -92,7 +92,7 @@ const Formulario = ({crearCitas}) => {
                     value={fecha}
                 />
                 <label> Hora </label>
-                <input 
+                <input
                     type="time"
                     name="hora"
                     className="u-full-width"
@@ -100,7 +100,7 @@ const Formulario = ({crearCitas}) => {
                     value={hora}
                 />
                 <label> Sintomas </label>
-                <textarea 
+                <textarea
                     type="text"
                     name="sintomas"
                     className="u-full-width"
@@ -115,11 +115,11 @@ const Formulario = ({crearCitas}) => {
                 >Agregar Cita</button>
             </form>
         </Fragment>
-     );
+    );
 }
 
 Formulario.propTypes = {
     crearCitas: PropTypes.func.isRequired
 }
- 
+
 export default Formulario;

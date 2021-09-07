@@ -6,16 +6,16 @@ import Cita from './components/cita';
 
 function App() {
 
-  
-  let citasIniciales = JSON.parse( localStorage.getItem('citas') );
-  if ( !citasIniciales ){
+
+  let citasIniciales = JSON.parse(localStorage.getItem('citas'));
+  if (!citasIniciales) {
     citasIniciales = [];
   }
 
   // se van almacenar todas las citas
-  const [ citas, agregarCitas] = useState(citasIniciales);
+  const [citas, agregarCitas] = useState(citasIniciales);
 
-  const crearCitas = cita => {    
+  const crearCitas = cita => {
     agregarCitas([
       ...citas,
       cita
@@ -23,19 +23,17 @@ function App() {
   }
 
   // use effect para realizar ciertas operaciones cuando el state cambia
-  useEffect (  () => {
-    
+  useEffect(() => {
     localStorage.setItem('citas', JSON.stringify(citas))
-    
-  }, [citas] );
+  }, [citas]);
 
   // Eliminar la cita por su id
   const eliminarCita = id => {
-    const nuevasCitas = citas.filter( cita => cita.id !== id );
-    agregarCitas( nuevasCitas )
+    const nuevasCitas = citas.filter(cita => cita.id !== id);
+    agregarCitas(nuevasCitas)
   }
 
-  const titulo = citas.length ===0 ? 'no hay citas' : 'administra tus citas';
+  const titulo = citas.length === 0 ? 'no hay citas' : 'administra tus citas';
 
 
   return (
@@ -44,28 +42,26 @@ function App() {
       <div className="container">
         <div className="row">
           <div className="one-half column">
-            <Formulario 
+            <Formulario
               // estos son props
               crearCitas={crearCitas}
             />
           </div>
           <div className="one-half column">
-            <h2>{ titulo } </h2>
+            <h2>{titulo} </h2>
             {
               citas.map(cita => (
-                <Cita 
-                  key  = {cita.id}
-                  cita = {cita}
-                  eliminarCita = {eliminarCita}
+                <Cita
+                  key={cita.id}
+                  cita={cita}
+                  eliminarCita={eliminarCita}
                 />
               ))
             }
-            
           </div>
         </div>
       </div>
     </Fragment>
-    
   );
 }
 
