@@ -35,7 +35,7 @@ const Formulario = ({ crearCitas }) => {
         // validacion
         if (mascota === '' || dueño === '' || fecha === '' || hora === '' || sintomas === '') {
             modificarError(true);
-            return
+            return;
         }
 
         modificarError(false);
@@ -51,10 +51,7 @@ const Formulario = ({ crearCitas }) => {
             fecha: '',
             hora: '',
             sintomas: ''
-        })
-
-
-
+        });
     }
     return (
         <Fragment>
